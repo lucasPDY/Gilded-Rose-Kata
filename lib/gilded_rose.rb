@@ -4,52 +4,51 @@ class GildedRose
 	end
 
 =begin
-For starters, the code is incredibly hard to read, there's to many nested conditions and hardcoded values everywhere.
-1. Sulfuras, Hand of Ragnaros is a legendary item that never has to be sold or drop in quality, hence we don't need to process it at all
+This function takes an item and a qualityLimit, and increments the quality of the item if it hasn't reached the limit 
 =end
+	def incrementQuality(item, qualityLimit)
+		if item.quality < qualityLimit
+			item.quality += 1
+		end
+	end 
+
+	def decrementQuality(item, qualityLimit)
+		if item.quality > qualityLimit
+			item.quality -= 1
+		end
+	end
+
+	
 	def update_quality
 		@items.each do |item|
+			if item.name == "Sulfuras, Hand of Ragnaros"
+				next
+			end
 			if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
-				if item.quality > 0
-					if item.name != "Sulfuras, Hand of Ragnaros"
-						item.quality = item.quality - 1
-					end
-				end
+				decrementQuality(item,0)
 			else
 				if item.quality < 50
-					item.quality = item.quality + 1
+					item.quality += 1
 					if item.name == "Backstage passes to a TAFKAL80ETC concert"
 						if item.sell_in < 11
-							if item.quality < 50
-								item.quality = item.quality + 1
-							end
+							incrementQuality(item, 50)
 						end
 						if item.sell_in < 6
-							if item.quality < 50
-								item.quality = item.quality + 1
-							end
+							incrementQuality(item, 50)
 						end
 					end
 				end
 			end
-			if item.name != "Sulfuras, Hand of Ragnaros"
-				item.sell_in = item.sell_in - 1
-			end
+			item.sell_in -=  1
 			if item.sell_in < 0
 				if item.name != "Aged Brie"
 					if item.name != "Backstage passes to a TAFKAL80ETC concert"
-						if item.quality > 0
-							if item.name != "Sulfuras, Hand of Ragnaros"
-								item.quality = item.quality - 1
-							end
-						end
+						decrementQuality(item,0)
 					else
-						item.quality = item.quality - item.quality
+						item.quality -=  item.quality
 					end
 				else
-					if item.quality < 50
-						item.quality = item.quality + 1
-					end
+					incrementQuality(item, 50)
 				end
 			end
 		end

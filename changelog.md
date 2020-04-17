@@ -9,5 +9,13 @@ Eg. Checking if the particular item is not "Aged Brie" nor Concert Tix
 In this case, would be better to format it and put each of these code in their own if-elseif-else block
 
 Here are the steps that I've taken to refactor the code:
-1. Sulfuras, Hand of Ragnaros is a legendary item that never has to be sold or drop in quality, hence we don't need to process it at all and can skip to the next item
-
+1. Replaced all incrementation and decrementation with `+=` and `-=` respectively
+2. Sulfuras, Hand of Ragnaros is a legendary item that never has to be sold or drop in quality, hence we don't need to process it at all and can skip to the next item
+3. The code increment and decrement the item's quality is repeated several times.
+e.g. ```
+if item.quality < 50
+    item.quality += 1
+end
+```
+Refactored it by creating another function `incrementQuality(item, qualityLimit)` that takes an item and a qualityLimit, and increments the quality of the item if it hasn't reached the limit. Did the same for `decrementQuality`
+4.
