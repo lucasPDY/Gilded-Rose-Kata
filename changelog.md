@@ -24,3 +24,4 @@ Refactored it by creating another function `incrementQuality(item, qualityLimit)
 7. Changed to hardcoded 11 and 6 values in updating the quality value of the backstage passes to 10 and 5. 
 8. Separated nested if-else conditions to a flat if-elsif-else format, improving the structure of the code
 9. created `hasExpired(item)` method to check if an item's sellin value < 0 and refactored the code to accomodate it
+10. create update methods `Aged Brie` and `Concert Passes ...`
