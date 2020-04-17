@@ -2,14 +2,6 @@ require_relative '../lib/gilded_rose'
 require_relative '../lib/item'
 
 
-# For each desired change, make the change easy (warning: this may be hard), then make the easy change. —Kent Beck
-=begin
-This
-is
-multi
-line
-comment
-=end
 describe GildedRose do
   let(:name) { "item" }
   let(:initial_sell_in) { 5 }
