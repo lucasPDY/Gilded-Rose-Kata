@@ -18,4 +18,7 @@ if item.quality < 50
 end
 ```
 Refactored it by creating another function `incrementQuality(item, qualityLimit)` that takes an item and a qualityLimit, and increments the quality of the item if it hasn't reached the limit. Did the same for `decrementQuality`
-4.
+4. There's also a few hardcoded strings and numbers in the code. We replace these with Constants
+5. Using DeMorgan's Laws, convert `if (item.name != AGED_BRIE && item.name != BACKSTAGE_PASSES)` to `item.name == BRIE || item.name == CONCERT_PASS`
+6. Extract the single `item.sell_in -= 1` portion of the code and made it a function, so that its purpose is more elaborate. 
+7. Changed to hardcoded 11 and 6 values in updating the quality value of the backstage passes to 10 and 5. Also, moved the part of the code that updates the sellIn value of items to the top, separating sellin logic with quality logic 
