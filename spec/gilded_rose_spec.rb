@@ -167,5 +167,33 @@ describe GildedRose do
         expect(items[0].quality).to eq(9)
       end
     end
+
+    context "when item name is 'Conjured'" do
+      let(:name) { 'Conjured' }
+
+      context "and sell in is 11 days" do
+        let(:initial_sell_in) { 11 }
+
+        it "decreases quality by 2" do
+          expect(item.quality).to eq 8
+        end
+      end
+
+      context "and sell in  is in 100 days" do
+        let(:initial_sell_in) { 100 }
+
+        it "decreases quality by 2" do
+          expect(item.quality).to eq 8
+        end
+      end
+
+      context " and sell in is 0" do
+        let(:initial_sell_in) { -1 }
+
+        it "decreases quality by 4" do
+          expect(item.quality).to eq 6
+        end
+      end
+    end
   end
 end

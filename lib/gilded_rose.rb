@@ -1,11 +1,13 @@
 require_relative 'item_wrapper'
 require_relative 'aged_brie'
 require_relative 'backstage_passes'
+require_relative 'conjured_item'
 
 class GildedRose
 	SULFURAS = "Sulfuras, Hand of Ragnaros"
 	BRIE = "Aged Brie"
 	CONCERT_PASS = "Backstage passes to a TAFKAL80ETC concert"
+	CONJURED = "Conjured"
 	# MAX_QLTY_LIMIT = 50
 	# MIN_QLTY_LIMIT = 0
 	# DAYS_LEFT_TO_DOUBLE_CONCERT_QLTY = 10
@@ -40,6 +42,9 @@ class GildedRose
 				# updateConcertPasses(item)
 				backstagePasses = BackstagePasses.new(item)
 				backstagePasses.update
+			elsif item.name == CONJURED
+				conjuredItem = ConjuredItem.new(item)
+				conjuredItem.update
 			else
 				normalItem = ItemWrapper.new(item)
 				normalItem.update
